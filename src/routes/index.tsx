@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import Home from '@/pages/home';
+import Header from '@src/components/header';
+import Footer from '@src/components/footer';
+import Home from '@src/pages/home';
 import { Router, Route } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 

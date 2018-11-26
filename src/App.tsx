@@ -13,6 +13,7 @@ class App extends React.Component {
             <div id="app">
                 <Helmet>
                     <meta charSet="utf-8" />
+                    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"/>
                     <title>{ siteConfig.siteName }</title>
                 </Helmet>
                 <Provider store={store}>
