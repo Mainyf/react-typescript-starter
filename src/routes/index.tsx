@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Header } from '@src/components/header/';
 import { Footer } from '@src/components/footer/';
 import { PageLayout } from '@src/layouts/pageLayout/';
-import Home from '@src/pages/home';
+import { Home } from '@src/pages/home/';
 import { Router, Route } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 

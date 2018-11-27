@@ -1,9 +1,9 @@
+@import "../../styles/mixins";
+
 footer {
-    display: flex;
     height: 60px;
-    align-items: center;
-    justify-content: center;
     background: #fff;
+    @include flexChildrenCenter;
     .copyright {
         a {
             color: #999;

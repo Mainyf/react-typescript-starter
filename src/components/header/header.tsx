@@ -18,6 +18,7 @@ class Header extends React.Component {
                     }}
                     iconStyleLeft={{"display": "none"}}
                     iconStyleRight={{"display": "none"}}
+                    zDepth={0}
                 />
             </header>
         );
