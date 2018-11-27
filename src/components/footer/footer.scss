@@ -1,0 +1,17 @@
+footer {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    .copyright {
+        a {
+            color: #999;
+            font-weight: 700;
+            text-decoration: none;
+            &:hover {
+                color: #64854c;
+            }
+        }
+    }
+}

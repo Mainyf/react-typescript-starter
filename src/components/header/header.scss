@@ -1,0 +1,19 @@
+@import "../../styles/function";
+
+header.navbar {
+    height: 60px;
+    box-shadow: 0 5px 10px 0 rgba(0,64,128,.05);
+    
+    .container {
+        display: flex;
+        align-items: center;  // align center
+        .logo {
+            font-size: 18px;
+            margin-left: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            font-weight: 700;
+            background: #1563d0;
+        }
+    }
+}
