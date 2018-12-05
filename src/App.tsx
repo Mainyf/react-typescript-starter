@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Helmet} from 'react-helmet';
 import { Provider } from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Routers from './routes';
 import configure from './store/configureStore';
 import siteConfig from '../_config.json';
@@ -20,9 +19,7 @@ class App extends React.Component {
                     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
                 </Helmet>
                 <Provider store={store}>
-                    <MuiThemeProvider>
-                        <Routers />
-                    </MuiThemeProvider>
+                    <Routers />
                 </Provider>
             </div>
         );
