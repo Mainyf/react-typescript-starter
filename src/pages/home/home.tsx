@@ -1,12 +1,13 @@
 import * as React from 'react';
 import './home.scss';
-import banner from '@src/images/banner.jpg';
+// import banner from '@src/images/banner.jpg';
 
 class Home extends React.Component {
     public render() {
         return (
             <div className="homePage">
-                <div className="banner">
+            home
+                {/* <div className="banner">
                     <img src={ banner } />
                     <div className="textSection">
                         <div className="title">
@@ -22,7 +23,7 @@ class Home extends React.Component {
                         </span>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }

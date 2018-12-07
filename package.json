@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-bootstrap": "^0.32.15",
     "@types/react-helmet": "^5.0.7",
     "@types/react-redux": "^6.0.10",
     "@types/react-router-dom": "^4.3.1",
@@ -33,6 +34,7 @@
     "promise": "8.0.1",
     "raf": "3.4.0",
     "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
     "react-dev-utils": "^5.0.2",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",

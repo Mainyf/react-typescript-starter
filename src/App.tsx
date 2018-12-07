@@ -15,8 +15,10 @@ class App extends React.Component {
                     <meta charSet="utf-8" />
                     <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"/>
                     <title>{ siteConfig.siteName }</title>
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
-                    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+                    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js" />
+                    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv-printshiv.min.js" />
+                    <script src="https://cdn.bootcss.com/es5-shim/4.5.12/es5-shim.min.js" />
+                    <script src="https://cdn.bootcss.com/es5-shim/4.5.12/es5-sham.min.js" />
                 </Helmet>
                 <Provider store={store}>
                     <Routers />
