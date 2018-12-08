@@ -1,21 +1,29 @@
 import * as React from 'react';
-import { Header } from '@src/components/header/';
-import { Footer } from '@src/components/footer/';
+import { Header, Footer } from '@src/components';
 import { PageLayout } from '@src/layouts/pageLayout/';
 import { Home } from '@src/pages/home/';
-import { Router, Route } from 'react-router';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { Download } from '@src/pages/download/';
+import { Router, Route, Switch } from 'react-router';
+import createHashHistory from 'history/createHashHistory';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 export default () => (
     <Router history={history}>
         <div>
             <Header />
             <PageLayout>
-                <Route exact path="/" component={Home} />
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/download" component={Download} />
+                    <Route component={NoMatch} />
+                </Switch>
             </PageLayout>
             <Footer />
         </div>
     </Router>
 );
+
+function NoMatch() {
+    return (<div>404 Not found.</div>);
+}
