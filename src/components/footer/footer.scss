@@ -1,0 +1,17 @@
+@import "../../styles/mixins";
+
+footer {
+    height: 60px;
+    background: #fff;
+    @include flexChildrenCenter;
+    .copyright {
+        a {
+            color: #999;
+            font-weight: 700;
+            text-decoration: none;
+            &:hover {
+                color: #64854c;
+            }
+        }
+    }
+}

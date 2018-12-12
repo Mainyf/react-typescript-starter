@@ -1,13 +1,14 @@
 import * as React from 'react';
+import './card.scss';
 
-class Home extends React.Component {
+class Card extends React.Component {
     public render() {
         return (
             <div>
-                <h1>Home</h1>
+                asdsda
             </div>
         );
     }
 }
 
-export default Home;
+export default Card;

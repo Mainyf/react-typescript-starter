@@ -1,0 +1,5 @@
+$browser-default-font-size: 16px !default;
+
+@function toRem($value) {
+    @return $value / $browser-default-font-size * 1rem;
+}
