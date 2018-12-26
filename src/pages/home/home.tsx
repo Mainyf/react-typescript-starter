@@ -1,14 +1,19 @@
 import * as React from 'react';
 import './home.scss';
-// import banner from '@src/images/banner.jpg';
+import { renderBannerParticles } from "@src/libs/particles/particles";
+import { IProviderProps, PROVIDERS } from "@src/provider";
+import { inject, observer } from "mobx-react";
 
-class Home extends React.Component {
+@inject(...PROVIDERS)
+@observer
+export default class Home extends React.Component<IProviderProps, {}> {
     public render() {
         return (
             <div className="homePage">
-            home
-                {/* <div className="banner">
-                    <img src={ banner } />
+                <div className="banner">
+                    <div id="particles-js" style={{
+                        background: '#1891b6'
+                    }}/>
                     <div className="textSection">
                         <div className="title">
                             <span className="left">UMI社区</span>
@@ -23,10 +28,20 @@ class Home extends React.Component {
                         </span>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </div>
         );
     }
+    
+    public componentWillMount() {
+        const { layoutStore } = this.props.store!;
+        layoutStore.setStyles({
+            padding: 0
+        });
+    }
+    
+    public componentDidMount() {
+        renderBannerParticles('particles-js');
+    }
 }
 
-export default Home;

@@ -3,8 +3,6 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
-const webpackBaseConfig = require('./webpack.config.base');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -35,10 +33,11 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths ?
     } :
     {};
 
-const webpackProdConfig = {
+module.exports = {
     bail: true,
     devtool: shouldUseSourceMap ? 'source-map' : false,
     entry: [require.resolve('./polyfills'), paths.appIndexJs],
+    // entry: paths.appIndexJs,
     output: {
         path: paths.appBuild,
         filename: 'static/js/[name].[chunkhash:8].js',
@@ -46,8 +45,8 @@ const webpackProdConfig = {
         publicPath: publicPath,
         devtoolModuleFilenameTemplate: info =>
             path
-            .relative(paths.appSrc, info.absoluteResourcePath)
-            .replace(/\\/g, '/'),
+                .relative(paths.appSrc, info.absoluteResourcePath)
+                .replace(/\\/g, '/'),
     },
     resolve: {
         modules: ['node_modules', paths.appNodeModules].concat(
@@ -113,7 +112,7 @@ const webpackProdConfig = {
                                 transpileOnly: true,
                                 configFile: paths.appTsProdConfig,
                             },
-                        }, ],
+                        },],
                     },
                     {
                         test: /\.(css|scss)$/,
@@ -126,13 +125,13 @@ const webpackProdConfig = {
                                         },
                                     },
                                     use: [{
-                                            loader: require.resolve('css-loader'),
-                                            options: {
-                                                importLoaders: 1,
-                                                minimize: true,
-                                                sourceMap: shouldUseSourceMap,
-                                            },
+                                        loader: require.resolve('css-loader'),
+                                        options: {
+                                            importLoaders: 1,
+                                            minimize: true,
+                                            sourceMap: shouldUseSourceMap,
                                         },
+                                    },
                                         require.resolve('sass-loader'),
                                         {
                                             loader: require.resolve('postcss-loader'),
@@ -250,5 +249,3 @@ const webpackProdConfig = {
         child_process: 'empty',
     },
 };
-
-module.exports = merge(webpackBaseConfig, webpackProdConfig);

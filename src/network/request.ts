@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosRequestConfig} from 'axios';
 
 const NAME = 'name';
 
@@ -8,14 +8,13 @@ const service = axios.create({
 });
 
 service.interceptors.request.use(
-    config => {
+    function(config: AxiosRequestConfig): AxiosRequestConfig | Promise<AxiosRequestConfig> {
         config.headers[NAME] = 'Mainyf';
         return config;
     },
-    error => {
-        // 发送失败
+    function(error: number) {
         console.log(error);
-        Promise.reject(error);
+        return Promise.reject(error);
     }
 );
 

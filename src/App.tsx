@@ -1,18 +1,15 @@
 import * as React from 'react';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
 import Routers from './routes';
-import configure from './store/configureStore';
+import * as provider from './provider';
 import './styles/normalize.css';
-
-
-const store = configure({});
 
 class App extends React.Component {
     public render() {
         return (
             <div>
-                <Provider store={store}>
-                    <Routers />
+                <Provider {...provider}>
+                    <Routers/>
                 </Provider>
             </div>
         );

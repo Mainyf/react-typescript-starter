@@ -1,1 +1,7 @@
-@import "../../styles/function";
+._header {
+    display: flex;
+    flex-direction: row;
+    ._menu {
+        width: 100%;
+    }
+}

@@ -20,7 +20,8 @@ const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
 
 const webpackDevConfig = {
-    devtool: 'cheap-module-source-map',
+    // devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
     entry: [
         require.resolve('react-dev-utils/webpackHotDevClient'),
     ],
