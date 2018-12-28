@@ -3,10 +3,11 @@ import './home.scss';
 import { renderBannerParticles } from "@src/libs/particles/particles";
 import { IProviderProps, PROVIDERS } from "@src/provider";
 import { inject, observer } from "mobx-react";
+import { pageHOC } from "@src/pages/pageWrapped";
 
 @inject(...PROVIDERS)
 @observer
-export default class Home extends React.Component<IProviderProps, {}> {
+class Home extends React.Component<IProviderProps, {}> {
     public render() {
         return (
             <div className="homePage">
@@ -36,7 +37,8 @@ export default class Home extends React.Component<IProviderProps, {}> {
     public componentWillMount() {
         const { layoutStore } = this.props.store!;
         layoutStore.setStyles({
-            padding: 0
+            padding: 0,
+            margin: 0
         });
     }
     
@@ -45,3 +47,5 @@ export default class Home extends React.Component<IProviderProps, {}> {
     }
 }
 
+export default pageHOC(Home);
+// export default Home;
