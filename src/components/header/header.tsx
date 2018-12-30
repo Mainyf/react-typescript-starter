@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Menu, Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
 import Logo from "@src/components/logo/logo";
 import './header.scss';
 
@@ -9,6 +10,7 @@ interface IMenuItem {
     label: string;
     key: string;
     iconName: string;
+    url: string;
 }
 
 interface IHeaderState {
@@ -21,11 +23,13 @@ const initialState: IHeaderState = {
         {
             label: '首页',
             key: 'home',
+            url: '/',
             iconName: 'home'
         },
         {
             label: '下载',
             key: 'download',
+            url: '/download',
             iconName: 'download'
         }
     ],
@@ -34,7 +38,7 @@ const initialState: IHeaderState = {
 
 type State = Readonly<typeof initialState>;
 
-export default class Header extends React.Component<{}, State> {
+class Header extends React.Component<any, State> {
 
     public readonly state: State = initialState;
 
@@ -68,6 +72,8 @@ export default class Header extends React.Component<{}, State> {
         this.setState({
             defaultActive: item.key
         });
+        this.props.history.push(item.url);
     }
-
 }
+
+export default withRouter(Header);

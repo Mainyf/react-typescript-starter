@@ -2,34 +2,44 @@
 
 .homePage {
     position: relative;
+
     .banner {
         position: relative;
+
         img {
             width: 100%;
         }
+
         .textSection {
             pointer-events: none;
             width: 100%;
             color: #fff;
             font-weight: bold;
             flex-direction: column;
-
             @include absoluteBlockCenter;
             @include flexChildrenCenter;
-            .title {
-                font-size: 60px;
-                text-shadow: 0.1em 0.1em 0.2em #3a3636;
-                .left {
-                    padding-right: 10px;
+
+            .textContent {
+                text-align: center;
+                .title {
+                    font-size: 60px;
+                    text-shadow: 0.1em 0.1em 0.2em #3a3636;
+
+                    .left {
+                        padding-right: 10px;
+                    }
+
+                    .right {
+                        padding-right: 10px;
+                        color: #36bfc4;
+                    }
                 }
-                .right {
-                    padding-right: 10px;
-                    color: #36bfc4;
+
+                .subTitle {
+                    margin-top: 20px;
                 }
             }
-            .subTitle {
-                margin-top: 20px;
-            }
+
         }
     }
 }

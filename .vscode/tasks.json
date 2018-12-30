@@ -1,0 +1,13 @@
+{
+    "command": "npm",
+    "echoCommand": false,
+    "tasks": [
+        {
+            "label": "debug",
+            "isBackground": true,
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": []
+        }
+    ]
+}
