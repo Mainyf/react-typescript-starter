@@ -13,9 +13,3 @@ ReactDOM.render(
     document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
-
-// window.addEventListener('message', () => {
-//     if (process.env.NODE_ENV !== 'production') {
-//         console.clear();
-//     }
-// });

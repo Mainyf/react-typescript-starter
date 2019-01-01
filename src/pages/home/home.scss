@@ -1,8 +1,10 @@
 @import "../../styles/mixins";
+@import "../../styles/function";
 
 .homePage {
     position: relative;
-
+    min-width: 1200px;
+    overflow: hidden;
     .banner {
         position: relative;
 
@@ -17,10 +19,17 @@
             font-weight: bold;
             flex-direction: column;
             @include absoluteBlockCenter;
-            @include flexChildrenCenter;
-
+            display: flex!important;
+            align-items: center;
+            
+            * {
+                pointer-events: auto;
+            }
+            
             .textContent {
                 text-align: center;
+                display: inline-block;
+                margin-top: toRem(150px);
                 .title {
                     font-size: 60px;
                     text-shadow: 0.1em 0.1em 0.2em #3a3636;
@@ -39,7 +48,33 @@
                     margin-top: 20px;
                 }
             }
-
+            
+            .cardController {
+                margin-top: toRem(68px);
+            }
+            
+            .controlController {
+                margin-top: toRem(68px);
+                display: flex;
+                flex-direction: row;
+                .btnDownload {
+                    cursor: pointer;
+                    padding: 5px 37px;
+                    border: 2px solid transparent;
+                    background-color: #fff;
+                    transition: all .2s ease;
+                    &:hover {
+                        background-color: #000;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                    a {
+                        color: #000;
+                        text-decoration: none;
+                    }
+                }
+            }
         }
     }
 }

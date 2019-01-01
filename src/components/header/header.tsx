@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
 import { withRouter } from 'react-router-dom';
 import Logo from "@src/components/logo/logo";
 import './header.scss';
@@ -45,15 +45,17 @@ class Header extends React.Component<any, State> {
     public render() {
         const menus = this.getMenus();
         return (
-            <header className="_header">
-                <Logo />
-                <Menu
-                    className="_menu"
-                    mode="horizontal"
-                    selectedKeys={[this.state.defaultActive]}
-                >
-                    {menus}
-                </Menu>
+            <header>
+                <div className="container">
+                    <Logo />
+                    <Menu
+                        className="menu-container"
+                        mode="horizontal"
+                        selectedKeys={[this.state.defaultActive]}
+                    >
+                        {menus}
+                    </Menu>
+                </div>
             </header>
         );
     }
@@ -61,9 +63,7 @@ class Header extends React.Component<any, State> {
     private getMenus() {
         return this.state.menuItems.map(v => {
             return (
-                <MenuItem key={v.key} onClick={() => this.handleClickMenu(v)}>
-                    <Icon type={v.iconName} /> {v.label}
-                </MenuItem>
+                <MenuItem key={v.key} onClick={() => this.handleClickMenu(v)}> {v.label} </MenuItem>
             );
         });
     }

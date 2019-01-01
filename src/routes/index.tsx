@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { PageLayout } from '@src/layouts/pageLayout/';
 import Home from '@src/pages/home/home';
+import Download from "@src/pages/download/download";
 import { Router, Route, Switch } from 'react-router';
 import createHashHistory from 'history/createHashHistory';
 import Footer from "@src/components/footer/footer";
@@ -15,7 +16,7 @@ export default () => (
             <PageLayout>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    {/*<Route path="/download" component={Download} />*/}
+                    <Route path="/download" component={Download} />
                     <Route component={NoMatch} />
                 </Switch>
             </PageLayout>

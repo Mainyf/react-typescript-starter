@@ -14,6 +14,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const smp = new SpeedMeasurePlugin();
 
 const publicPath = '/';
 const publicUrl = '';
@@ -22,6 +24,7 @@ const env = getClientEnvironment(publicUrl);
 const webpackDevConfig = {
     // devtool: 'cheap-module-source-map',
     devtool: 'source-map',
+    watch: true,
     entry: [
         require.resolve('react-dev-utils/webpackHotDevClient'),
     ],
@@ -123,13 +126,14 @@ const webpackDevConfig = {
         new webpack.HotModuleReplacementPlugin(),
         new CaseSensitivePathsPlugin(),
         new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        new ForkTsCheckerWebpackPlugin({
-            async: false,
-            watch: paths.appSrc,
-            tsconfig: paths.appTsConfig,
-            tslint: paths.appTsLint,
-        }),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+        // ,
+        // new ForkTsCheckerWebpackPlugin({
+        //     async: false,
+        //     watch: paths.appSrc,
+        //     tsconfig: paths.appTsConfig,
+        //     tslint: paths.appTsLint,
+        // }),
     ],
     node: {
         dgram: 'empty',

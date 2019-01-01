@@ -74,6 +74,7 @@
         "@types/node": "^10.12.10",
         "@types/react": "^16.7.18",
         "@types/react-dom": "^16.0.10",
+        "speed-measure-webpack-plugin": "^1.2.5",
         "typescript": "^3.1.6"
     },
     "jest": {
