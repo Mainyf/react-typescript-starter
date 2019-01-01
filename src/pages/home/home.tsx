@@ -46,9 +46,8 @@ class Home extends React.Component<IProviderProps, any> {
                                 </div>
                             }
                         </Motion>
-                        <div className="cardController"/>
                         <div className="controlController">
-                            <Motion 
+                            <Motion
                                 defaultStyle={{
                                     x: 200,
                                     opacity: 0
@@ -59,17 +58,15 @@ class Home extends React.Component<IProviderProps, any> {
                                 }}
                             >
                                 {({ x, opacity }) =>
-                                    <div
+                                    <Link
+                                        to="/download"
                                         className="btnDownload"
                                         style={{
                                             transform: `translate3d(${x}px, 0, 0)`,
                                             opacity
-                                        }}
-                                    >
-                                        <Link to="/download">
-                                            <Icon type="download" /> 下载
-                                        </Link>
-                                    </div>
+                                        }}>
+                                        <Icon type="download"/> 下载
+                                    </Link>
                                 }
                             </Motion>
                         </div>
