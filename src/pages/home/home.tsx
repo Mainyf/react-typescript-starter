@@ -64,7 +64,8 @@ class Home extends React.Component<IProviderProps, any> {
                                         style={{
                                             transform: `translate3d(${x}px, 0, 0)`,
                                             opacity
-                                        }}>
+                                        }}
+                                    >
                                         <Icon type="download"/> 下载
                                     </Link>
                                 }

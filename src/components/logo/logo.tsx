@@ -1,4 +1,5 @@
 import * as React from 'react';
+import logo from '@src/images/logo.png';
 import './logo.scss';
 
 export default class Logo extends React.Component {
@@ -9,7 +10,7 @@ export default class Logo extends React.Component {
                 display: 'inline-block',
                 color: '#fff'
             }}>
-                UMIZ
+                <img src={logo} />
             </div>
         );
     }
