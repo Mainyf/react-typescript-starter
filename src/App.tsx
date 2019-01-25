@@ -6,6 +6,7 @@ import './styles/normalize.css';
 
 class App extends React.Component {
     public render() {
+        console.log({...provider});
         return (
             <div>
                 <Provider {...provider}>

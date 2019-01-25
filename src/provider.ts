@@ -1,11 +1,9 @@
-import { IRootStore, rootStore } from './store';
+import Demo from './store/demo';
 
-export const store = rootStore;
+export const store = {
+    Demo
+};
 
 export const PROVIDERS = [
     'store'
 ];
-
-export interface IProviderProps {
-    store?: IRootStore;
-}
