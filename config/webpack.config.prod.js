@@ -11,6 +11,7 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const paths = require('./paths');
+const loaders = require('./loaders');
 const getClientEnvironment = require('./env');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -115,9 +116,75 @@ module.exports = {
                         },],
                     },
                     {
-                        test: /\.(css|scss)$/,
+                        test: /\.scss$/,
+                        exclude: /\.module\.scss$/,
+                        use: ExtractTextPlugin.extract(
+                            {
+                                ...{
+                                    fallback: {
+                                        loader: require.resolve('style-loader'),
+                                        options: {
+                                            hmr: false,
+                                        },
+                                    },
+                                    use: [
+                                        loaders.cssLoader(),
+                                        require.resolve('sass-loader'),
+                                        loaders.postCssLoader
+                                    ],
+                                },
+                                ...extractTextPluginOptions
+                            }
+                        )
+                    },
+                    {
+                        test: /\.module\.css/,
+                        use: ExtractTextPlugin.extract(
+                            {
+                                ...{
+                                    fallback: {
+                                        loader: require.resolve('style-loader'),
+                                        options: {
+                                            hmr: false,
+                                        },
+                                    },
+                                    use: [
+                                        loaders.cssModuleLoader(),
+                                        require.resolve('sass-loader'),
+                                        loaders.postCssLoader
+                                    ],
+                                },
+                                ...extractTextPluginOptions
+                            }
+                        )
+                    },
+                    {
+                        test: /\.module\.scss/,
+                        use: ExtractTextPlugin.extract(
+                            {
+                                ...{
+                                    fallback: {
+                                        loader: require.resolve('style-loader'),
+                                        options: {
+                                            hmr: false,
+                                        },
+                                    },
+                                    use: [
+                                        loaders.cssModuleLoader(),
+                                        require.resolve('sass-loader'),
+                                        loaders.postCssLoader
+                                    ],
+                                },
+                                ...extractTextPluginOptions
+                            }
+                        )
+                    },
+                    {
+                        test: /\.css$/,
+                        exclude: /\.module\.css$/,
                         loader: ExtractTextPlugin.extract(
-                            Object.assign({
+                            {
+                                ...{
                                     fallback: {
                                         loader: require.resolve('style-loader'),
                                         options: {
@@ -153,8 +220,8 @@ module.exports = {
                                         },
                                     ],
                                 },
-                                extractTextPluginOptions
-                            )
+                                ...extractTextPluginOptions
+                            }
                         ),
                     },
                     {

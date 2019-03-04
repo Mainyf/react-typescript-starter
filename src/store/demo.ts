@@ -3,7 +3,7 @@ import { action, observable } from 'mobx';
 class Demo {
     
     @observable
-    message: string = 'demo message';
+    public message: string = 'demo message';
 
     @action.bound
     public setMessage(message: string) {

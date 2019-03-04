@@ -13,6 +13,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const loaders = require('./loaders');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const smp = new SpeedMeasurePlugin();
@@ -74,34 +75,42 @@ const webpackDevConfig = {
                         }, ],
                     },
                     {
-                        test: /\.(css|scss)$/,
+                        test: /\.scss$/,
+                        exclude: /\.module\.scss$/,
                         use: [
                             require.resolve('style-loader'),
-                            {
-                                loader: require.resolve('css-loader'),
-                                options: {
-                                    importLoaders: 1,
-                                },
-                            },
+                            loaders.cssLoader(),
+                            loaders.postCssLoader,
+                            require.resolve('sass-loader')
+                        ]
+                    },
+                    {
+                        test: /\.module\.scss/,
+                        use: [
+                            require.resolve('style-loader'),
+                            loaders.cssModuleLoader,
+                            loaders.postCssLoader,
+                            require.resolve('sass-loader')
+                        ]
+                    },
+                    {
+                        test: /\.module\.css/,
+                        use: [
+                            require.resolve('style-loader'),
+                            loaders.cssModuleLoader,
+                            loaders.postCssLoader
+                        ]
+                    },
+                    {
+                        test: /\.css$/,
+                        exclude: /\.module\.css$/,
+                        use: [
+                            require.resolve('style-loader'),
+                            loaders.cssLoader({
+                                importLoaders: 1,
+                            }),
                             require.resolve('sass-loader'),
-                            {
-                                loader: require.resolve('postcss-loader'),
-                                options: {
-                                    ident: 'postcss',
-                                    plugins: () => [
-                                        require('postcss-flexbugs-fixes'),
-                                        autoprefixer({
-                                            browsers: [
-                                                '>1%',
-                                                'last 4 versions',
-                                                'Firefox ESR',
-                                                'not ie < 9',
-                                            ],
-                                            flexbox: 'no-2009',
-                                        }),
-                                    ],
-                                },
-                            },
+                            loaders.postCssLoader
                         ],
                     },
                     {
