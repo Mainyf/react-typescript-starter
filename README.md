@@ -1,7 +1,13 @@
 # react+typescript+mobx
 
 ```
-1.npm install
 
-2.npm run start
+git clone https://github.com/Mainyf/react-typescript-starter
+
+cd react-typescript-starter
+
+npm i
+
+npm run start
+
 ```
