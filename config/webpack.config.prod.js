@@ -5,6 +5,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
@@ -28,13 +31,12 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 
 const cssFilename = 'static/css/[name].[contenthash:8].css';
 
-const extractTextPluginOptions = shouldUseRelativeAssetPaths ?
-    {
-        publicPath: Array(cssFilename.split('/').length).join('../')
-    } :
-    {};
+const extractCssPluginOptions = shouldUseRelativeAssetPaths ? {
+    publicPath: Array(cssFilename.split('/').length).join('../')
+} : {};
 
 module.exports = {
+    mode: 'production',
     bail: true,
     devtool: shouldUseSourceMap ? 'source-map' : false,
     entry: [require.resolve('./polyfills'), paths.appIndexJs],
@@ -46,8 +48,8 @@ module.exports = {
         publicPath: publicPath,
         devtoolModuleFilenameTemplate: info =>
             path
-                .relative(paths.appSrc, info.absoluteResourcePath)
-                .replace(/\\/g, '/'),
+            .relative(paths.appSrc, info.absoluteResourcePath)
+            .replace(/\\/g, '/'),
     },
     resolve: {
         modules: ['node_modules', paths.appNodeModules].concat(
@@ -78,16 +80,14 @@ module.exports = {
     },
     module: {
         strictExportPresence: true,
-        rules: [
-            {
+        rules: [{
                 test: /\.(js|jsx|mjs)$/,
                 loader: require.resolve('source-map-loader'),
                 enforce: 'pre',
                 include: paths.appSrc,
             },
             {
-                oneOf: [
-                    {
+                oneOf: [{
                         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
                         loader: require.resolve('url-loader'),
                         options: {
@@ -113,116 +113,77 @@ module.exports = {
                                 transpileOnly: true,
                                 configFile: paths.appTsProdConfig,
                             },
-                        },],
+                        }, ],
                     },
                     {
                         test: /\.scss$/,
                         exclude: /\.module\.scss$/,
-                        use: ExtractTextPlugin.extract(
-                            {
-                                ...{
-                                    fallback: {
-                                        loader: require.resolve('style-loader'),
-                                        options: {
-                                            hmr: false,
-                                        },
-                                    },
-                                    use: [
-                                        loaders.cssLoader(),
-                                        require.resolve('sass-loader'),
-                                        loaders.postCssLoader
-                                    ],
-                                },
-                                ...extractTextPluginOptions
-                            }
-                        )
+                        use: [{
+                                loader: MiniCssExtractPlugin.loader,
+                                options: extractCssPluginOptions
+                            },
+                            loaders.cssLoader(),
+                            require.resolve('sass-loader'),
+                            loaders.postCssLoader
+                        ]
                     },
                     {
                         test: /\.module\.css/,
-                        use: ExtractTextPlugin.extract(
-                            {
-                                ...{
-                                    fallback: {
-                                        loader: require.resolve('style-loader'),
-                                        options: {
-                                            hmr: false,
-                                        },
-                                    },
-                                    use: [
-                                        loaders.cssModuleLoader(),
-                                        require.resolve('sass-loader'),
-                                        loaders.postCssLoader
-                                    ],
-                                },
-                                ...extractTextPluginOptions
-                            }
-                        )
+                        use: [{
+                                loader: MiniCssExtractPlugin.loader,
+                                options: extractCssPluginOptions
+                            },
+                            loaders.cssModuleLoader(),
+                            require.resolve('sass-loader'),
+                            loaders.postCssLoader
+                        ]
                     },
                     {
                         test: /\.module\.scss/,
-                        use: ExtractTextPlugin.extract(
-                            {
-                                ...{
-                                    fallback: {
-                                        loader: require.resolve('style-loader'),
-                                        options: {
-                                            hmr: false,
-                                        },
-                                    },
-                                    use: [
-                                        loaders.cssModuleLoader(),
-                                        require.resolve('sass-loader'),
-                                        loaders.postCssLoader
-                                    ],
-                                },
-                                ...extractTextPluginOptions
-                            }
-                        )
+                        use: [{
+                                loader: MiniCssExtractPlugin.loader,
+                                options: extractCssPluginOptions
+                            },
+                            loaders.cssModuleLoader(),
+                            require.resolve('sass-loader'),
+                            loaders.postCssLoader
+                        ]
                     },
                     {
                         test: /\.css$/,
                         exclude: /\.module\.css$/,
-                        loader: ExtractTextPlugin.extract(
+                        use: [{
+                                loader: MiniCssExtractPlugin.loader,
+                                options: extractCssPluginOptions
+                            },
                             {
-                                ...{
-                                    fallback: {
-                                        loader: require.resolve('style-loader'),
-                                        options: {
-                                            hmr: false,
-                                        },
-                                    },
-                                    use: [{
-                                        loader: require.resolve('css-loader'),
-                                        options: {
-                                            importLoaders: 1,
-                                            minimize: true,
-                                            sourceMap: shouldUseSourceMap,
-                                        },
-                                    },
-                                        require.resolve('sass-loader'),
-                                        {
-                                            loader: require.resolve('postcss-loader'),
-                                            options: {
-                                                ident: 'postcss',
-                                                plugins: () => [
-                                                    require('postcss-flexbugs-fixes'),
-                                                    autoprefixer({
-                                                        browsers: [
-                                                            '>1%',
-                                                            'last 4 versions',
-                                                            'Firefox ESR',
-                                                            'not ie < 9',
-                                                        ],
-                                                        flexbox: 'no-2009',
-                                                    }),
-                                                ],
-                                            },
-                                        },
+                                loader: require.resolve('css-loader'),
+                                options: {
+                                    importLoaders: 1,
+                                    minimize: true,
+                                    sourceMap: shouldUseSourceMap,
+                                },
+                            },
+                            require.resolve('sass-loader'),
+                            {
+                                loader: require.resolve('postcss-loader'),
+                                options: {
+                                    ident: 'postcss',
+                                    plugins: () => [
+                                        require('postcss-flexbugs-fixes'),
+                                        autoprefixer({
+                                            browsers: [
+                                                '>1%',
+                                                'last 4 versions',
+                                                'Firefox ESR',
+                                                'not ie < 9',
+                                            ],
+                                            flexbox: 'no-2009',
+                                        }),
                                     ],
                                 },
-                                ...extractTextPluginOptions
-                            }
-                        ),
+                            },
+                        ]
                     },
                     {
                         loader: require.resolve('file-loader'),
@@ -236,7 +197,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new InterpolateHtmlPlugin(env.raw),
         new HtmlWebpackPlugin({
             inject: true,
             template: paths.appHtml,
@@ -253,6 +213,7 @@ module.exports = {
                 minifyURLs: true,
             },
         }),
+        new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
         new webpack.DefinePlugin(env.stringified),
         new UglifyJsPlugin({
             uglifyOptions: {
@@ -278,7 +239,10 @@ module.exports = {
             cache: true,
             sourceMap: shouldUseSourceMap,
         }),
-        new ExtractTextPlugin({
+        // new ExtractTextPlugin({
+        //     filename: cssFilename,
+        // }),
+        new MiniCssExtractPlugin({
             filename: cssFilename,
         }),
         new ManifestPlugin({

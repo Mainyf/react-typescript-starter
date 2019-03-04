@@ -23,6 +23,7 @@ const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
 
 const webpackDevConfig = {
+    mode: 'development',
     // devtool: 'cheap-module-source-map',
     devtool: 'source-map',
     watch: true,
@@ -125,11 +126,11 @@ const webpackDevConfig = {
         ],
     },
     plugins: [
-        new InterpolateHtmlPlugin(env.raw),
         new HtmlWebpackPlugin({
             inject: true,
             template: paths.appHtml,
         }),
+        new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin(env.stringified),
         new webpack.HotModuleReplacementPlugin(),
