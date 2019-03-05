@@ -40,6 +40,7 @@
         "jest",
         "src/setupTests.ts",
         "src/libs/**/*",
-        "**/*.json"
+        "**/*.json",
+        "config"
     ]
 }
