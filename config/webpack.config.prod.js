@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
@@ -159,7 +160,6 @@ module.exports = {
                                 loader: require.resolve('css-loader'),
                                 options: {
                                     importLoaders: 1,
-                                    minimize: true,
                                     sourceMap: shouldUseSourceMap,
                                 },
                             },
@@ -243,6 +243,16 @@ module.exports = {
         // }),
         new MiniCssExtractPlugin({
             filename: cssFilename,
+        }),
+        new OptimizeCssnanoPlugin({
+            sourceMap: true,
+            cssnanoOptions: {
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }],
+            },
         }),
         new ManifestPlugin({
             fileName: 'asset-manifest.json',

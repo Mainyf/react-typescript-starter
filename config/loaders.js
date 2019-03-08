@@ -13,8 +13,7 @@ module.exports = {
                 ...{
                     modules: true,
                     sourceMap: true,
-                    localIdentName: '[local]__[hash:base64:5]',
-                    minimize: !IS_DEVELOPMENT
+                    localIdentName: '[local]__[hash:base64:5]'
                 },
                 ...options
             }
@@ -26,8 +25,7 @@ module.exports = {
             options: {
                 ...{
                     modules: false,
-                    sourceMap: true,
-                    minimize: !IS_DEVELOPMENT
+                    sourceMap: true
                 },
                 ...options
             }

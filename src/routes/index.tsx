@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Home from '@src/pages/home';
 import { Router, Route, Switch } from 'react-router';
-import createHashHistory from 'history/createHashHistory';
+import { createHashHistory } from 'history';
 
 const history = createHashHistory();
 
