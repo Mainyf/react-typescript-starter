@@ -68,12 +68,16 @@ const webpackDevConfig = {
                     {
                         test: /\.(ts|tsx)$/,
                         include: paths.appSrc,
-                        use: [{
-                            loader: require.resolve('ts-loader'),
-                            options: {
-                                transpileOnly: true,
-                            },
-                        }, ],
+                        enforce: 'pre',
+                        use: [
+                            require.resolve('babel-loader'),
+                            {
+                                loader: require.resolve('ts-loader'),
+                                options: {
+                                    transpileOnly: true,
+                                },
+                            }
+                        ],
                     },
                     {
                         test: /\.scss$/,

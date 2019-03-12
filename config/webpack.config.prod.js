@@ -107,13 +107,17 @@ module.exports = {
                     {
                         test: /\.(ts|tsx)$/,
                         include: paths.appSrc,
-                        use: [{
-                            loader: require.resolve('ts-loader'),
-                            options: {
-                                transpileOnly: true,
-                                configFile: paths.appTsProdConfig,
+                        enforce: 'pre',
+                        use: [
+                            require.resolve('babel-loader'),
+                            {
+                                loader: require.resolve('ts-loader'),
+                                options: {
+                                    transpileOnly: true,
+                                    configFile: paths.appTsProdConfig,
+                                },
                             },
-                        }, ],
+                        ],
                     },
                     {
                         test: /\.scss$/,
