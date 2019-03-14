@@ -41,6 +41,7 @@
         "src/setupTests.ts",
         "src/libs/**/*",
         "**/*.json",
-        "config"
+        "config/**",
+        "public/**"
     ]
 }
