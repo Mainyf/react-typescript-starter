@@ -108,6 +108,9 @@ function getGlobalEnvironment(name) {
     if (fs.existsSync(envPath)) {
         result = dotenv.parse(fs.readFileSync(envPath));
     }
+    for(let i in result) {
+        result[i] = result[i].toString();
+    }
     return result;
 }
 
