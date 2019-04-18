@@ -47,8 +47,8 @@ if (process.env.HOST) {
     console.log(
         chalk.cyan(
             `Attempting to bind to HOST environment variable: ${chalk.yellow(
-        chalk.bold(process.env.HOST)
-      )}`
+                chalk.bold(process.env.HOST)
+            )}`
         )
     );
     console.log(

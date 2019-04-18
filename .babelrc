@@ -1,9 +1,0 @@
-{
-    "presets": [
-        "@babel/preset-react"
-    ],
-    "plugins": [
-        "@babel/plugin-syntax-dynamic-import",
-        "dynamic-import-webpack"
-    ]
-}

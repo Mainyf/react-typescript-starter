@@ -12,7 +12,11 @@
         "allowJs": true,
         "jsx": "react",
         "moduleResolution": "node",
-        "rootDir": "src",
+        //"rootDir": "src",
+        "rootDirs": [
+            "public",
+            "src"
+        ],
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
@@ -23,6 +27,7 @@
         "experimentalDecorators": true,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": true,
+        "downlevelIteration": true,
         "paths": {
             "@src/*": [
                 "./src/*"

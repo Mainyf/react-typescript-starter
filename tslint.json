@@ -12,7 +12,23 @@
         "no-console": false,
         "object-literal-sort-keys": false,
         "only-arrow-functions": false,
-        "no-unused-expressions": false
+        "no-unused-expressions": false,
+        "no-unused-expression": false,
+        "interface-name": false,
+        "member-ordering": false,
+        "variable-name": false,
+        "no-string-literal": false,
+        "no-shadowed-variable": false,
+        "adjacent-overload-signatures": false,
+        "forin": false,
+        "interface-over-type-literal": false,
+        "curly": false,
+        "max-classes-per-file": false,
+        "no-empty": false,
+        "object-literal-shorthand": false,
+        "prefer-const": false,
+        "radix": false,
+        "one-variable-per-declaration": false
     },
     "linterOptions": {
         "exclude": [
