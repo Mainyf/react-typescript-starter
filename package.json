@@ -21,7 +21,7 @@
         "mobx": "^4.9.4",
         "mobx-react": "^5.4.3",
         "mobx-react-lite": "^1.1.1",
-        "node-sass": "^4.10.0",
+        "node-sass": "^7.0.0",
         "object-assign": "4.1.1",
         "polyfill-array-includes": "^2.0.0",
         "promise": "8.0.1",
